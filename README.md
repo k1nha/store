@@ -1,36 +1,52 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Desafio Frontend Mission Brasil
+Primeiramente, muito obrigado pelo interesse em trabalhar na maior plataforma de serviços recompensados do Brasil!
 
-## Getting Started
+## Avisos antes de começar
+- Crie um repositório no Github sem citar nada relacionado ao Mission Brasil.
+- Faça pelo menos 2 commits.
+- Envie o link do seu repositório para o e-mail do recrutador responsável.
+- Fique a vontade para perguntar qualquer dúvida aos recrutadores.
 
-First, run the development server:
+## Caso você seja aprovado para etapa da entrevista técnica
+Na data agedanda vamos falar um pouquinho sobre o seu código, como se fosse um code review analisando alguns detalhes, nada muito profundo, apenas para nos conhecermos melhor e você entender um pouco mais sobre fit cultural da empresa.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Ambiente
+- Utilizar Next >= 13
+- App Router
+- Tailwind
+- Next Auth (Para Autenticação, Utilizar Google)
+- Utilizar componentes com [shad](https://ui.shadcn.com/)
+- Deploy Vercel
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Objetivo: Mission Store
+Vamos criar uma lojinha com produtos que permitem você adicionar produtos e realizar uma compras.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Requisitos:
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+- Criar Páginas
+  - Login
+  - Cadastro de Produtos
+  - Lista de Produtos
+- Na página de "Cadastro de Produtos"
+  - Nome do Produto
+  - Preço
+  - Descrição
+- Na página de "Lista de Produtos"
+  - Produto
+  - Botão de Adicionar no Carrinho
+  - Grid com 3 Colunas
+  - Adicionar Campo de Busca utilizando `searchParams`
+- Criar Drawer para "Carrinho" listando produtos adicionados
 
-## Learn More
+## Avaliação
 
-To learn more about Next.js, take a look at the following resources:
+- Documentação
+- Apresentar soluções que domina
+- Tratamento de erros
+- Cuidado com itens de segurança
+- Arquitetura
+- Desacoplamento e reutilização de componentes (Composition, Providers...)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Tem um prazo de entrega?
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Normalmente em 5 dias, tente focar em qualidade de entrega, caso demore um pouco mais, não tem problema, faça no seu tempo, isso não é o mais importante pra nós.
