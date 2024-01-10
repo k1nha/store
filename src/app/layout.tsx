@@ -1,6 +1,9 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
+import { Context } from '@/shared/context/contexts'
+import { useSession } from 'next-auth/react'
+import { useRouter } from 'next/router'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -14,9 +17,18 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
+  const { data: session } = useSession()
+  const { replace } = useRouter()
+
+  if (session && session.user) {
+    replace('/dashboard')
+  }
+
   return (
-    <html lang="en">
-      <body className={inter.className}>{children}</body>
+    <html lang='en'>
+      <body className={inter.className}>
+        <Context>{children}</Context>
+      </body>
     </html>
   )
 }

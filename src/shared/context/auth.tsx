@@ -1,5 +1,6 @@
 import { SessionProvider } from 'next-auth/react'
 
+
 interface AuthProviderProps {
   children: React.ReactNode
 }
