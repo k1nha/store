@@ -1,14 +1,16 @@
 'use client'
 
-import { redirect, useRouter } from 'next/navigation'
 import { GoogleIcon } from '@/shared/icon'
-import { Button } from '../ui/button'
-import { signIn, useSession } from 'next-auth/react'
+import { signIn } from 'next-auth/react'
 import { useState } from 'react'
+import { Button } from '../ui/button'
 
-export function GoogleSignInButton() {
+interface GoogleButtonProps {
+  disabled?: boolean
+}
+
+export function GoogleSignInButton(props: GoogleButtonProps) {
   const [isLoading, setIsLoading] = useState(false)
-  const { data: session } = useSession()
 
   async function handleClick() {
     setIsLoading((prev) => !prev)
@@ -24,15 +26,12 @@ export function GoogleSignInButton() {
     console.log(result)
   }
 
-  if (session && session.user) {
-    return <div className=''>oi</div>
-  }
-
   return (
     <Button
       className='flex w-72 items-center gap-4 py-5'
       onClick={handleClick}
       disabled={isLoading}
+      {...props}
     >
       <GoogleIcon />
       Entrar com Google
