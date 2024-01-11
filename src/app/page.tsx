@@ -1,5 +1,6 @@
 import { GoogleSignInButton, GoogleSignUpButton } from '@/components'
 import { Separator } from '@/components/ui/separator'
+import { LoginModule } from '@/modules/login/login-module'
 import { ShoppingBagIcon } from 'lucide-react'
 
 export default function Home() {
@@ -12,21 +13,7 @@ export default function Home() {
             <h1 className='font-semibold'>Mission Store</h1>
           </div>
 
-          <p className='text-center text-sm text-gray-500'>Entre em</p>
-          <h2 className='mb-4 text-xl font-bold'>Mission Store</h2>
-
-          <GoogleSignInButton />
-
-          <div className='my-4 flex min-w-72 items-center gap-3'>
-            <Separator className='h-[2px] shrink' orientation='horizontal' />
-            <p>ou</p>
-            <Separator className='h-[2px] shrink' orientation='horizontal' />
-          </div>
-
-          <p className='mb-4 text-center text-sm text-gray-500'>
-            Faça o cadastro abaixo
-          </p>
-          <GoogleSignUpButton />
+          <LoginModule />
         </section>
 
         <section className='hidden w-1/2 justify-between bg-[url("https://images.unsplash.com/photo-1543996469-600fbadfc1e8?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")] bg-cover bg-center lg:flex'></section>
