@@ -11,8 +11,9 @@ datasource db {
 }
 
 model Product {
-  id          String @id @unique @default(uuid())
+  id          String   @id @unique @default(uuid())
   name        String
   description String
   price       Int
+  badges      String[]
 }
