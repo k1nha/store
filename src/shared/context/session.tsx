@@ -1,6 +1,7 @@
 'use client'
 import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
+import { LoadingSpinner } from '../icon'
 
 export default function LoggedProvider({
   children,
@@ -10,7 +11,11 @@ export default function LoggedProvider({
   const { status } = useSession()
   const { replace } = useRouter()
   if (status === 'loading') {
-    return <p>Loading...</p>
+    return (
+      <div className='flex h-screen items-center justify-center'>
+        <LoadingSpinner />
+      </div>
+    )
   }
 
   if (status === 'unauthenticated') {

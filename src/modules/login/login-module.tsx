@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation'
 
 export function LoginModule() {
   const { data: session, status } = useSession()
-  const { push, replace } = useRouter()
+  const { replace } = useRouter()
 
   if (session && session.user) {
     replace('/dashboard')

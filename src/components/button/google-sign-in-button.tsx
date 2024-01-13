@@ -1,6 +1,6 @@
 'use client'
 
-import { GoogleIcon } from '@/shared/icon'
+import { GoogleIcon, LoadingSpinner } from '@/shared/icon'
 import { signIn } from 'next-auth/react'
 import { useState } from 'react'
 import { Button } from '../ui/button'
@@ -10,31 +10,25 @@ interface GoogleButtonProps {
 }
 
 export function GoogleSignInButton(props: GoogleButtonProps) {
-  const [isLoading, setIsLoading] = useState(false)
-
   async function handleClick() {
-    setIsLoading((prev) => !prev)
-    const result = await signIn('google')
-
-    if (result?.error) {
-      console.error(result.error)
-
-      setIsLoading((prev) => !prev)
-      return
-    }
-
-    console.log(result)
+    await signIn('google')
   }
 
   return (
     <Button
       className='flex w-72 items-center gap-4 py-5'
       onClick={handleClick}
-      disabled={isLoading}
+      disabled={props.disabled}
       {...props}
     >
-      <GoogleIcon />
-      Entrar com Google
+      {props.disabled ? (
+        <LoadingSpinner />
+      ) : (
+        <>
+          <GoogleIcon />
+          Entrar com Google
+        </>
+      )}
     </Button>
   )
 }
