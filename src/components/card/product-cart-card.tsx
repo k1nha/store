@@ -10,7 +10,7 @@ type Props = {
 
 export function ProductCartCard(props: Props) {
   return (
-    <Card className='relative flex gap-4 p-2'>
+    <Card className='relative flex gap-4 p-2 last:mb-3'>
       <Image
         src={'https://placehold.co/80x80.png'}
         alt=''

@@ -20,7 +20,7 @@ function ProductSkeleton() {
 export function ProductsSkeleton() {
   return (
     <>
-      {Array.from(Array(10).keys()).map((i) => (
+      {Array.from(Array(6).keys()).map((i) => (
         <ProductSkeleton key={i} />
       ))}
     </>

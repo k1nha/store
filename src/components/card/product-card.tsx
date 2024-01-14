@@ -1,8 +1,8 @@
-import Image from 'next/image'
-import { Card } from '../ui/card'
-import { Button } from '../ui/button'
 import { cn } from '@/lib/utils'
-import { Badge } from '../ui/badge'
+import Image from 'next/image'
+import { ToolTip } from '../tooltip'
+import { Button } from '../ui/button'
+import { Card } from '../ui/card'
 
 type CardProductProps = {
   name: string
@@ -10,8 +10,7 @@ type CardProductProps = {
   imgSrc?: string
   alt?: string
   className?: string
-  description?: string
-  badges: string[]
+  description: string
   func: () => void
 }
 
@@ -19,7 +18,6 @@ export function ProductCard({
   alt,
   className,
   imgSrc,
-  badges,
   description,
   name,
   price,
@@ -31,11 +29,15 @@ export function ProductCard({
         src={imgSrc || ''}
         alt={'product ' + alt}
         width={250}
+        priority
         height={250}
         className='aspect-[1/1] w-full rounded-lg object-cover transition-opacity group-hover:opacity-75'
       />
 
-      <h2 className='mt-4 text-lg font-bold'>{name}</h2>
+      <div className='mt-4 flex justify-between'>
+        <h2 className=' text-lg font-bold'>{name}</h2>
+        <ToolTip description={description} trigger='Leia mais' />
+      </div>
 
       <div className='pb-2 text-start'>
         <p className='text-lg font-semibold text-green-400'>
@@ -45,10 +47,6 @@ export function ProductCard({
           }).format(price / 100)}
         </p>
         <span className='text-sm text-gray-500'>À vista no PIX</span>
-      </div>
-
-      <div className='mb-2'>
-        {badges?.map((badge, k) => <Badge key={k}>{badge}</Badge>)}
       </div>
 
       <Button className='flex' onClick={func}>

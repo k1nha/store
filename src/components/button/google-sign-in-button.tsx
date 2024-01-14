@@ -2,7 +2,6 @@
 
 import { GoogleIcon, LoadingSpinner } from '@/shared/icon'
 import { signIn } from 'next-auth/react'
-import { useState } from 'react'
 import { Button } from '../ui/button'
 
 interface GoogleButtonProps {
