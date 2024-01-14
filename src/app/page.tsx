@@ -1,5 +1,3 @@
-import { GoogleSignInButton, GoogleSignUpButton } from '@/components'
-import { Separator } from '@/components/ui/separator'
 import { LoginModule } from '@/modules/login/login-module'
 import { ShoppingBagIcon } from 'lucide-react'
 

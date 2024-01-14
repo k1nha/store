@@ -1,12 +1,5 @@
 import { create } from 'zustand'
-
-type Product = {
-  id: string
-  name: string
-  price: number
-  description: string
-  badges: string[]
-}
+import { Product } from '../types'
 
 type CarStore = {
   cart: Product[]

@@ -1,6 +1,8 @@
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
+import { Textarea } from '@/components/ui/textarea'
 import { FormProps } from '@/shared/types'
+import { formatCurrency } from '@/shared/utils/currency'
 import { useFormik } from 'formik'
 import { ChangeEvent, useState } from 'react'
 
@@ -25,37 +27,38 @@ export function ProductForm({
   id,
   validationSchema,
 }: ProductFormProps) {
-  const [value, setValue] = useState('')
-  const { getFieldProps, handleSubmit, values, errors, touched, resetForm } =
-    useFormik({
-      initialValues: data || new Product(),
-      onSubmit: handleSubmitForm,
-      validationSchema,
-    })
-
-  const formatCurrency = (inputValue: string): string => {
-    let formattedValue = inputValue.replace(/\D/g, '')
-    formattedValue = (Number(formattedValue) / 100).toFixed(2).replace('.', ',')
-    return `R$ ${formattedValue}`
-  }
+  const [currencyInput, setCurrencyInput] = useState('')
+  const {
+    getFieldProps,
+    handleSubmit,
+    errors,
+    touched,
+    resetForm,
+    setFieldValue,
+  } = useFormik({
+    initialValues: data || new Product(),
+    onSubmit: handleSubmitForm,
+    validationSchema,
+  })
 
   function handleInputChange(e: ChangeEvent<HTMLInputElement>) {
     const inputValue = e.target.value
     const formattedValue = formatCurrency(inputValue)
-    setValue(formattedValue)
-    values.value = +e.target.value
-      .replace('R$ ', '')
-      .replace(',', '')
-      .replace(/^0+/, '')
+    setCurrencyInput(formattedValue)
+    setFieldValue(
+      'value',
+      +e.target.value.replace('R$ ', '').replace(',', '').replace(/^0+/, ''),
+    )
   }
 
   function handleSubmitForm(data: Product) {
     onSubmit(data)
+    setCurrencyInput('')
     resetForm()
   }
 
   return (
-    <form id={id} onSubmit={handleSubmit} className='mb-3 flex flex-col gap-3'>
+    <form id={id} onSubmit={handleSubmit} className='flex flex-col gap-3'>
       <div className=''>
         <Label>Nome do Produto</Label>
         <Input
@@ -75,22 +78,25 @@ export function ProductForm({
           type='text'
           placeholder='Digite o valor do produto'
           onChange={handleInputChange}
-          value={value}
+          value={currencyInput}
           disabled={disabled}
         />
+        {errors.value && touched.value && (
+          <p className='text-end text-xs text-red-400'>{errors.value}</p>
+        )}
       </div>
 
       <div className=''>
         <Label>Descrição</Label>
-        <Input
-          type='text'
+        <Textarea
           placeholder='Digite a descrição do produto'
           disabled={disabled}
           {...getFieldProps('description')}
         />
+        {errors.description && touched.description && (
+          <p className='text-end text-xs text-red-400'>{errors.description}</p>
+        )}
       </div>
-
-      <div className=''></div>
     </form>
   )
 }

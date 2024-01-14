@@ -1,18 +1,20 @@
 'use client'
 
 import { Button } from '@/components/ui/button'
-import { Product as ProductData, ProductForm } from './product-form'
-import { number, object, string } from 'yup'
-import { useMutation } from '@tanstack/react-query'
-import { queryClient } from '@/lib/query'
-import { HTTP } from '@/lib/axios'
-import { LoadingSpinner } from '@/shared/icon'
 import { useToast } from '@/components/ui/use-toast'
+import { HTTP } from '@/lib/axios'
+import { queryClient } from '@/lib/query'
+import { LoadingSpinner } from '@/shared/icon'
+import { useMutation } from '@tanstack/react-query'
+import { number, object, string } from 'yup'
+import { Product as ProductData, ProductForm } from './product-form'
 
 const productSchema = object({
-  name: string().required(),
-  value: number().required().min(0),
-  description: string().required(),
+  name: string().required('Nome é obrigatório'),
+  value: number()
+    .required('Valor é obrigatório')
+    .min(0.1, 'O valor precisa ser maior que 0.01'),
+  description: string().required('Descrição é obrigatória'),
 })
 
 export function ProductModule() {
@@ -31,17 +33,14 @@ export function ProductModule() {
         queryKey: ['products'],
       })
       toast({
-        title: 'Produto criado com sucesso',
-        description: 'Produto criado com sucesso',
+        title: 'Sucesso',
+        description: 'O item foi adicionado na lista de produtos',
       })
     },
   })
 
   async function handleSubmitProductForm(data: ProductData) {
-    createProductMutation({
-      ...data,
-      badges: [],
-    })
+    createProductMutation(data)
   }
 
   return (
@@ -51,7 +50,8 @@ export function ProductModule() {
         onSubmit={handleSubmitProductForm}
         id='product-form'
       />
-      <Button form='product-form' type='submit'>
+
+      <Button form='product-form' type='submit' className='mt-3'>
         {isPending ? <LoadingSpinner /> : <>Enviar</>}
       </Button>
     </>

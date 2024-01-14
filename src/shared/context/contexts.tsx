@@ -8,7 +8,7 @@ import { SessionProvider } from 'next-auth/react'
 export function Context({ children }: { children: React.ReactNode }) {
   return (
     <>
-      <Toaster  />
+      <Toaster />
       <QueryClientProvider client={queryClient}>
         <SessionProvider>{children}</SessionProvider>
       </QueryClientProvider>
