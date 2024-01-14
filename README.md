@@ -47,7 +47,7 @@ Os formulários são projetados de forma modular, permitindo o reutilização de
 
 ## Instalação
 
-Execute os seguintes comandos para iniciar o E-commerce:
+Execute os seguintes comandos para iniciar o projeto:
 
 ```bash
 # URL padrao DB postgresql://docker:docker@localhost:5432/mission?schema=public
