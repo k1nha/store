@@ -15,5 +15,5 @@ model Product {
   name        String
   description String
   price       Int
-  badges      String[]
+  createdAt   DateTime @default(now())
 }
